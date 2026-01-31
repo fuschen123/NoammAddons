@@ -153,7 +153,10 @@ object ActionUtils {
     suspend fun rodSwapAction() {
         if (thePlayer?.isDead == true) return
         val slotBeforeSwap = mc.thePlayer?.inventory?.currentItem ?: return
-        val rodIndex = getItemIndexInHotbar("rod") ?: return modMessage("&cNo rod found in hotbar!")
+        val rodIndex =
+            getItemIndexInHotbar("rod")
+                ?: getItemIndexInHotbar("zombie commander whip")
+                ?: return modMessage("&cNo rod or zombie commander whip found in hotbar!")
         val keyState = mc.gameSettings.keyBindUseItem.isKeyDown
 
         if (keyState) holdClick(false)
